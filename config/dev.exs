@@ -26,7 +26,15 @@ config :tr_daisy_2, TrDaisy2Web.Endpoint,
   secret_key_base: "QHBNMgEO/PBIG/2hYdJRug7MGfCej3GfeDsxumHqm9Jc+fhpN9UVL+KcXpZdQTIW",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    npx: [
+      "tailwindcss",
+      "--input=css/app.css",
+      "--output=../priv/static/assets/app.css",
+      "--watch",
+      cd: Path.expand("../assets", __DIR__)
+    ]
+
   ]
 
 # ## SSL Support
